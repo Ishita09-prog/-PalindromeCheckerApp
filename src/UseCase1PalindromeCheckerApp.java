@@ -1,29 +1,27 @@
+import java.util.Deque;
+import java.util.ArrayDeque;
 public class UseCase1PalindromeCheckerApp {
     public static void main(String[] args) {
+        // Define input string
+        String input = "refer";
 
-        // Declare and initialize input string
-        String input = "radar";
+        // Create Deque
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Convert string into character array
-        char[] chars = input.toCharArray();
+        // Add characters to deque
+        for (char c : input.toCharArray()) {
+            deque.addLast(c);
+        }
 
-        // Initialize pointers
-        int start = 0;
-        int end = chars.length - 1;
-
-        // Assume palindrome initially
         boolean isPalindrome = true;
 
-        // Two-pointer comparison
-        while (start < end) {
+        // Compare until size > 1
+        while (deque.size() > 1) {
 
-            if (chars[start] != chars[end]) {
+            if (deque.removeFirst() != deque.removeLast()) {
                 isPalindrome = false;
                 break;
             }
-
-            start++;
-            end--;
         }
 
         System.out.println("Input : " + input);
