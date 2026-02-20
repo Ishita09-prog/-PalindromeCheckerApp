@@ -1,31 +1,24 @@
-import java.util.Queue;
-import java.util.LinkedList;
-import java.util.Stack;
+import java.util.Deque;
+import java.util.ArrayDeque;
 public class UseCase1PalindromeCheckerApp {
-
     public static void main(String[] args) {
-
         // Define input string
-        String input = "civic";
+        String input = "refer";
 
-        // Create Queue (FIFO)
-        Queue<Character> queue = new LinkedList<>();
+        // Create Deque
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Create Stack (LIFO)
-        Stack<Character> stack = new Stack<>();
-
-        // Insert characters into both
+        // Add characters to deque
         for (char c : input.toCharArray()) {
-            queue.add(c);   // Enqueue
-            stack.push(c);  // Push
+            deque.addLast(c);
         }
 
         boolean isPalindrome = true;
 
-        // Compare until queue becomes empty
-        while (!queue.isEmpty()) {
+        // Compare until size > 1
+        while (deque.size() > 1) {
 
-            if (queue.remove() != stack.pop()) {
+            if (deque.removeFirst() != deque.removeLast()) {
                 isPalindrome = false;
                 break;
             }
