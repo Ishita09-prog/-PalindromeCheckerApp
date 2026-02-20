@@ -1,27 +1,31 @@
+import java.util.Queue;
+import java.util.LinkedList;
 import java.util.Stack;
-
 public class UseCase1PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        // Declare and initialize input string
-        String input = "noon";
+        // Define input string
+        String input = "civic";
 
-        // Create a Stack to store characters
+        // Create Queue (FIFO)
+        Queue<Character> queue = new LinkedList<>();
+
+        // Create Stack (LIFO)
         Stack<Character> stack = new Stack<>();
 
-        // Push each character into stack
+        // Insert characters into both
         for (char c : input.toCharArray()) {
-            stack.push(c);
+            queue.add(c);   // Enqueue
+            stack.push(c);  // Push
         }
 
-        // Assume palindrome initially
         boolean isPalindrome = true;
 
-        // Compare by popping from stack
-        for (char c : input.toCharArray()) {
+        // Compare until queue becomes empty
+        while (!queue.isEmpty()) {
 
-            if (c != stack.pop()) {
+            if (queue.remove() != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
